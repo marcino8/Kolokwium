@@ -29,7 +29,8 @@
     </style>
 </head>
 <body>
-    <div id="app">
+    <div id="app" tabindex="0"
+	v-on:keyup.down="dol()" v-on:keyup.up="gora()" v-on:keyup.right="prawo()" v-on:keyup.left="lewo()">
     {{ message }}
 	<div class="kwadracik" v-for="r in rows">
 		<div class="cell" v-for="c in columns" 
@@ -59,6 +60,54 @@
 		klik: function(r,c){
 				this.active = r.toString() +','+c.toString();
             },
+		},
+		dol: function(){
+				if(parseInt(sp1(this.active))<10){
+				var pom = parseInt(sp1(this.active))+1;
+				var pom1 = parseInt(sp2(this.active));
+				this.active = pom.toString() +','+pom1.toString();
+				}
+				else{
+				var pom = 0;
+				var pom1 = parseInt(sp2(this.active));
+				this.active = pom.toString() +','+pom1.toString();
+				}
+		},
+		gora: function(){
+				if(parseInt(sp1(this.active))>0){
+				var pom = parseInt(sp1(this.active))-1;
+				var pom1 = parseInt(sp2(this.active));
+				this.active = pom.toString() +','+pom1.toString();
+				}
+				else{
+				var pom = 10;
+				var pom1 = parseInt(sp2(this.active));
+				this.active = pom.toString() +','+pom1.toString();
+				}
+		},
+		prawo: function(){
+				if(parseInt(sp2(this.active))<10){
+				var pom = parseInt(sp2(this.active))+1;
+				var pom1 = parseInt(sp1(this.active));
+				this.active = pom1.toString() +','+pom.toString();
+				}
+				else{
+				var pom = 0;
+				var pom1 = parseInt(sp1(this.active));
+				this.active = pom1.toString() +','+pom.toString();
+				}
+		},
+		lewo: function(){
+				if(parseInt(sp2(this.active))>0){
+				var pom = parseInt(sp2(this.active))-1;
+				var pom1 = parseInt(sp1(this.active));
+				this.active = pom1.toString() +','+pom.toString();
+				}
+				else{
+				var pom = 10;
+				var pom1 = parseInt(sp1(this.active));
+				this.active = pom1.toString() +','+pom.toString();
+				}
 		}
     })
     </script>
