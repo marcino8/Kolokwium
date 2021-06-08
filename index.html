@@ -18,21 +18,29 @@
             justify-content: center;
             align-items: center;
         } 
+		.kwadracik{
+            display: flex;
+            flex-direction: row;
+        }
     </style>
 </head>
 <body>
     <div id="app">
     {{ message }}
-	<div class="cell">
-                <p>1</p>
+	<div class="kwadracik" v-for="r in rows">
+		<div class="cell" v-for="c in columns">
+                <p>{{ r }},{{ c }}</p>
             </div>
-    </div>
+		</div>
+	</div>
 
     <script>
     var app = new Vue({
         el: '#app',
         data: {
-            message: 'Powodzenia'
+            message: 'Powodzenia',
+			rows: 10, 
+            columns: 10
         }
     })
     </script>
