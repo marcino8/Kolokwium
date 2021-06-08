@@ -22,13 +22,18 @@
             display: flex;
             flex-direction: row;
         }
+		.active {
+            background: red;
+            color: white;
+        }
     </style>
 </head>
 <body>
     <div id="app">
     {{ message }}
 	<div class="kwadracik" v-for="r in rows">
-		<div class="cell" v-for="c in columns">
+		<div class="cell" v-for="c in columns" 
+		:class="[sp1(active) === r.toString() && sp2(active) === c.toString() ? 'active' : 'cell']">
                 <p>{{ r }},{{ c }}</p>
             </div>
 		</div>
@@ -40,8 +45,20 @@
         data: {
             message: 'Powodzenia',
 			rows: 10, 
-            columns: 10
-        }
+            columns: 10,
+			active: '1,1'
+        },
+		
+		methods: {
+		sp1: function(x){
+				console.log(x.split(',')[0])
+                return x.split(',')[0]
+            },
+			sp2: function(x){
+				console.log(x.split(',')[0])
+                return x.split(',')[1]
+            }
+		}
     })
     </script>
 </body>
